@@ -7,21 +7,31 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         int n = Integer.parseInt(br.readLine());
-        String pn = "I";
-        for (int i=0; i<n; i++) {
-            pn += "OI";
-        }
-
         int m = Integer.parseInt(br.readLine());
         String s = br.readLine();
-
-        int count = 0;
-        for (int i=0; i<=s.length()-pn.length(); i++) {
-            String str = s.substring(i, i+pn.length());
-            if (pn.equals(str))
-                count++;
+        
+        int ans = 0;
+        int cnt = 0;
+        char c = 'O';
+        for (int i=0; i<m; i++) {
+            char tmpChar = s.charAt(i);
+            
+            if (c == tmpChar) {
+                if (tmpChar == 'O') {
+                    cnt = 0;
+                } else {
+                    cnt = 1;
+                }
+            } else {
+                cnt++;
+            }
+            c = tmpChar;
+            
+            if (c == 'I' && cnt >= 2*n+1) {
+                ans++;
+            }
         }
 
-        System.out.println(count);
+        System.out.println(ans);
     }
 }
