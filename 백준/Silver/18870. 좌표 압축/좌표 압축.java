@@ -8,29 +8,29 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         
-        int[] arr = new int[n];
-        HashSet<Integer> set = new HashSet<>();
+        int[] arr1 = new int[n];
+        int[] arr2 = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine());
         
         for (int i=0; i<n; i++) {
             
             int x = Integer.parseInt(st.nextToken());
-            
-            arr[i] = x;
-            set.add(x);
+            arr1[i] = x;
+            arr2[i] = x;
         }
-        List<Integer> list = new ArrayList<>(set);
-        Collections.sort(list);
+        Arrays.sort(arr2);
         
         HashMap<Integer, Integer> map = new HashMap<>();
         int cnt = 0;
-        for (int e : list) {
-            map.put(e, cnt);
-            cnt++;
+        for (int e : arr2) {
+            if (!map.containsKey(e)) {
+                map.put(e, cnt);
+                cnt++;
+            }
         }
         
         StringBuilder sb= new StringBuilder();
-        for (int e : arr) {
+        for (int e : arr1) {
             sb.append(map.get(e) + " ");
         }
         
